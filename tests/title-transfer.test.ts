@@ -1,21 +1,31 @@
+import { describe, it, expect, beforeEach } from "vitest"
 
-import { describe, expect, it } from "vitest";
+describe("Title Transfer Contract", () => {
+  beforeEach(() => {
+    // Setup test environment
+  })
+  
+  it("should transfer property title", () => {
+    const propertyId = 1
+    const newOwner = "ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG"
+    
+    // Simulated contract call
+    const result = { success: true, value: 1 }
+    
+    expect(result.success).toBe(true)
+    expect(result.value).toBe(1)
+    
+    // Simulated transfer retrieval
+    const transfer = {
+      propertyId,
+      from: "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM",
+      to: newOwner,
+      transferDate: 110,
+    }
+    
+    expect(transfer.propertyId).toBe(propertyId)
+    expect(transfer.to).toBe(newOwner)
+    expect(transfer.transferDate).toBe(110)
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});

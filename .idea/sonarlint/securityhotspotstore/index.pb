@@ -9,3 +9,5 @@ S
 #tests/property-registration.test.ts,c/c/ccde1a447ae67f2e4048d93a2194cf68bd40219f
 M
 contracts/title-transfer.clar,0/d/0d3f057c7ba0a3fc079560e79baa49b3f7b70279
+L
+tests/title-transfer.test.ts,a/e/ae1f0497cb1f8d9dcd67e77ac9d6cd19aec47b40

@@ -1,30 +1,54 @@
+;; Lien Recording Contract
+;; Tracks financial claims against properties
 
-;; title: lien-recording
-;; version:
-;; summary:
-;; description:
+(define-constant contract-owner tx-sender)
 
-;; traits
-;;
+(define-map liens
+  { lien-id: uint }
+  {
+    property-id: uint,
+    lien-holder: principal,
+    amount: uint,
+    filing-date: uint,
+    status: (string-ascii 20)
+  }
+)
 
-;; token definitions
-;;
+(define-data-var last-lien-id uint u0)
 
-;; constants
-;;
+(define-read-only (get-lien (lien-id uint))
+  (map-get? liens { lien-id: lien-id })
+)
 
-;; data vars
-;;
+(define-public (record-lien (property-id uint) (amount uint))
+  (let
+    (
+      (new-lien-id (+ (var-get last-lien-id) u1))
+    )
+    (var-set last-lien-id new-lien-id)
+    (ok (map-set liens
+      { lien-id: new-lien-id }
+      {
+        property-id: property-id,
+        lien-holder: tx-sender,
+        amount: amount,
+        filing-date: block-height,
+        status: "active"
+      }
+    ))
+  )
+)
 
-;; data maps
-;;
-
-;; public functions
-;;
-
-;; read only functions
-;;
-
-;; private functions
-;;
+(define-public (release-lien (lien-id uint))
+  (let
+    (
+      (lien (unwrap! (get-lien lien-id) (err u404)))
+    )
+    (asserts! (is-eq (get lien-holder lien) tx-sender) (err u403))
+    (ok (map-set liens
+      { lien-id: lien-id }
+      (merge lien { status: "released" })
+    ))
+  )
+)
 
