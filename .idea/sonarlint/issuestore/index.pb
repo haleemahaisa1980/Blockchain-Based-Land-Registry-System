@@ -7,3 +7,5 @@ T
 $contracts/property-registration.clar,b/b/bbedb9c1a2880c6c490d6467a8a9ed055406d8be
 S
 #tests/property-registration.test.ts,c/c/ccde1a447ae67f2e4048d93a2194cf68bd40219f
+M
+contracts/title-transfer.clar,0/d/0d3f057c7ba0a3fc079560e79baa49b3f7b70279
